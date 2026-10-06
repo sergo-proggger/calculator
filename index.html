@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор стоимости сайта — демо</title>
+<meta name="description" content="Калькулятор стоимости сайта на чистом JavaScript из темы WordPress cherncode.ru. Автор: Сергей Черномырдин.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+<section id="calculator" class="section-shell calculator-section">
+    <div class="container">
+        <p class="demo-note">
+            <strong>Демо.</strong> Этот калькулятор работал на моём сайте <a href="https://cherncode.ru" target="_blank" rel="noopener">cherncode.ru</a> в теме WordPress, которую я писал сам. Здесь он вынесен на отдельную страницу: чистый JavaScript, без библиотек. На сайте расчёт уходил в форму заявки и в Telegram-бота, в демо кнопка «Отправить» показывает текст заявки.
+        </p>
+
+        <div class="section-head">
+            <div>
+                <span class="section-kicker">Калькулятор</span>
+                <h2>Узнайте <span>примерную стоимость</span></h2>
+            </div>
+            <p>Выберите параметры проекта, расчёт обновляется сразу. Это ориентир для разговора, точная цена после обсуждения задачи.</p>
+        </div>
+
+        <div class="calculator-builder" data-calculator>
+            <div class="calculator-controls">
+                <div class="calculator-group">
+                    <div class="calculator-group-head"><span>Тип проекта</span></div>
+                    <div class="calculator-options" data-calc-type>
+                        <button type="button" data-calc-value="landing" class="is-selected" aria-pressed="true">Лендинг / сайт-визитка</button>
+                        <button type="button" data-calc-value="multipage" aria-pressed="false">Многостраничный сайт</button>
+                        <button type="button" data-calc-value="shop" aria-pressed="false">Интернет-магазин (WooCommerce)</button>
+                        <button type="button" data-calc-value="revamp" aria-pressed="false">Доработка существующего сайта</button>
+                    </div>
+                </div>
+
+                <div class="calculator-group" data-calc-pages-group hidden>
+                    <div class="calculator-group-head"><label for="calc-pages"><span>Количество страниц</span></label><strong data-calc-pages-value>5</strong></div>
+                    <input id="calc-pages" type="range" min="5" max="20" step="1" value="5" data-calc-pages class="calculator-range">
+                </div>
+
+                <div class="calculator-group">
+                    <div class="calculator-group-head"><span>Дополнительно</span></div>
+                    <div class="calculator-features">
+                        <label class="calculator-feature is-locked">
+                            <input type="checkbox" checked disabled>
+                            <span>Адаптивная вёрстка под все устройства</span>
+                            <b>включено</b>
+                        </label>
+                        <label class="calculator-feature">
+                            <input type="checkbox" data-calc-feature="animations" data-price="15000-25000" data-days="3">
+                            <span>Анимации и интерактив</span>
+                            <b>+15–25 тыс ₽</b>
+                        </label>
+                        <label class="calculator-feature">
+                            <input type="checkbox" data-calc-feature="cms" data-price="20000-35000" data-days="5">
+                            <span>Личный кабинет / CMS-админка</span>
+                            <b>+20–35 тыс ₽</b>
+                        </label>
+                        <label class="calculator-feature">
+                            <input type="checkbox" data-calc-feature="seo" data-price="10000-18000" data-days="2">
+                            <span>SEO-оптимизация и аналитика</span>
+                            <b>+10–18 тыс ₽</b>
+                        </label>
+                        <label class="calculator-feature">
+                            <input type="checkbox" data-calc-feature="integrations" data-price="12000-22000" data-days="3">
+                            <span>Интеграция с Telegram / CRM / оплатой</span>
+                            <b>+12–22 тыс ₽</b>
+                        </label>
+                        <label class="calculator-feature">
+                            <input type="checkbox" data-calc-feature="multilang" data-price="15000-25000" data-days="4">
+                            <span>Мультиязычность</span>
+                            <b>+15–25 тыс ₽</b>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calculator-group">
+                    <div class="calculator-group-head"><span>Срок</span></div>
+                    <div class="calculator-options" data-calc-urgency>
+                        <button type="button" data-calc-value="standard" class="is-selected" aria-pressed="true">Стандартный</button>
+                        <button type="button" data-calc-value="urgent" aria-pressed="false">Срочно (+30%)</button>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="calculator-summary" aria-live="polite">
+                <span class="calculator-summary-label">Примерный расчёт</span>
+                <strong class="calculator-price" data-calc-price>25 000 – 40 000 ₽</strong>
+                <span class="calculator-days" data-calc-days>~3–5 рабочих дней</span>
+                <ul class="calculator-summary-list" data-calc-summary-list></ul>
+                <div class="calculator-summary-actions">
+                    <button type="button" class="btn btn-primary" data-calc-send>Отправить расчёт <span>↗</span></button>
+                    <a href="https://t.me/serega_chErno" target="_blank" rel="noopener" class="btn btn-ghost" data-calc-telegram>Написать в Telegram <span>↗</span></a>
+                    <button type="button" class="btn btn-ghost" data-calc-copy>Скопировать расчёт</button>
+                </div>
+                <pre class="calc-preview" data-calc-preview hidden></pre>
+                <p class="calculator-note">Это ориентировочная вилка. Финальная стоимость зависит от деталей задачи.</p>
+            </aside>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer class="demo-footer">
+    <div class="container">Сергей Черномырдин · <a href="https://cherncode.ru" target="_blank" rel="noopener">cherncode.ru</a> · <a href="https://github.com/sergo-proggger" target="_blank" rel="noopener">GitHub</a></div>
+</footer>
+
+<script src="calculator.js"></script>
+</body>
+</html>
